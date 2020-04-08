@@ -6,7 +6,7 @@ import com.yp.spring.framework.annotation.GPService;
 import com.yp.spring.framework.beans.GPBeanWrapper;
 import com.yp.spring.framework.beans.config.GPBeanDefinition;
 import com.yp.spring.framework.beans.config.GPBeanPostProcessor;
-import com.yp.spring.framework.beans.support.GPBeanDefinitoinReader;
+import com.yp.spring.framework.beans.support.GPBeanDefinitionReader;
 import com.yp.spring.framework.beans.support.GPDefaultListableBeanFactory;
 import com.yp.spring.framework.core.GPBeanFactory;
 
@@ -22,16 +22,25 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class GPApplicationContext extends GPDefaultListableBeanFactory implements GPBeanFactory {
 
-    //读取文件的数组
+    /**
+     * 读取文件的数组
+     */
     private String[] configLocations;
 
-    private GPBeanDefinitoinReader reader;
+    /**
+     * beanDefinitionReader
+     */
+    private GPBeanDefinitionReader reader;
 
-    //用来保存注册式单例的容器
-    private Map<String, Object> singletonBeanCacheMap = new ConcurrentHashMap<String, Object>();
+    /**
+     * 用来保存注册式单例的容器
+     */
+    private Map<String, Object> singletonBeanCacheMap = new ConcurrentHashMap<>();
 
-    //用来存储所有被代理过的对象
-    private Map<String, GPBeanWrapper> beanWrapperMap = new ConcurrentHashMap<String, GPBeanWrapper>();
+    /**
+     * 用来存储所有被代理过的对象
+     */
+    private Map<String, GPBeanWrapper> beanWrapperMap = new ConcurrentHashMap<>();
 
     public GPApplicationContext(String... configLocations) {
         this.configLocations = configLocations;
@@ -45,7 +54,7 @@ public class GPApplicationContext extends GPDefaultListableBeanFactory implement
     @Override
     public void refresh() throws Exception {
         //定位配置文件
-        reader = new GPBeanDefinitoinReader(this.configLocations);
+        reader = new GPBeanDefinitionReader(this.configLocations);
         //加载配置文件
         List<GPBeanDefinition> beanDefinitions = reader.loadBeanDefinitions();
         //注册 把配置信息放在容器里面(伪IOC容器)

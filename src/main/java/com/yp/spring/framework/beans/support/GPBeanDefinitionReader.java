@@ -12,10 +12,10 @@ import java.util.Properties;
 
 /**
  * @author ex-yipeng
- * @version Id: GPBeanDefinitoinReader.java, v 0.1 2020/3/30 14:51 ex-yipeng Exp $
+ * @version Id: GPBeanDefinitionReader.java, v 0.1 2020/3/30 14:51 ex-yipeng Exp $
  */
 //对配置文件进行查找 读取 解析
-public class GPBeanDefinitoinReader {
+public class GPBeanDefinitionReader {
 
     private List<String> registyBeanClasses = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class GPBeanDefinitoinReader {
 
     private final String SCAN_PACKAGE = "scanPackage";
 
-    public GPBeanDefinitoinReader(String... locations) {
+    public GPBeanDefinitionReader(String... locations) {
         InputStream is = this.getClass().getClassLoader().getResourceAsStream(locations[0].replace("classpath", ""));
         try {
             config.load(is);

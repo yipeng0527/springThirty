@@ -1,5 +1,7 @@
 package com.yp.spring.webmvc.servlet;
 
+import com.yp.spring.framework.context.GPApplicationContext;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +26,7 @@ public class GPDispatcherServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        GPApplicationContext applicationContext = new GPApplicationContext("application.properties");
+        System.out.println("1111");
     }
 }

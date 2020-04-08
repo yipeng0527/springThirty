@@ -8,7 +8,7 @@ public class GPBeanDefinition {
 
     private String beanClassName;
 
-    private Boolean lazyInit;
+    private Boolean lazyInit = false;
 
     private String factoryBeanName;
 
