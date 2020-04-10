@@ -8,7 +8,7 @@
 
     <servlet>
         <servlet-name>gupaomvc</servlet-name>
-        <servlet-class>com.yp.spring.webmvc.servlet.GPDispatcherServlet</servlet-class>
+        <servlet-class>com.yp.spring.framework.webmvc.servlet.GPDispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:application.properties</param-value>
