@@ -128,7 +128,9 @@ public class GPApplicationContext extends GPDefaultListableBeanFactory implement
             //强制访问
             field.setAccessible(true);
             try {
-                field.set(instance, this.beanWrapperMap.get(autowiredBeanName).getWrappedInstance());
+                if (null != this.beanWrapperMap.get(autowiredBeanName)) {
+                    field.set(instance, this.beanWrapperMap.get(autowiredBeanName).getWrappedInstance());
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

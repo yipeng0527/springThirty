@@ -24,7 +24,7 @@ public class GPBeanDefinitionReader {
     private final String SCAN_PACKAGE = "scanPackage";
 
     public GPBeanDefinitionReader(String... locations) {
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream(locations[0].replace("classpath", ""));
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream(locations[0].replace("classpath:", ""));
         try {
             config.load(is);
         } catch (IOException e) {
