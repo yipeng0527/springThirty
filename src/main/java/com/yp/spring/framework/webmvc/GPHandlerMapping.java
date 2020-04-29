@@ -11,11 +11,11 @@ import com.google.gson.Gson;
  */
 public class GPHandlerMapping {
 
-    private Object controller;
+    private Object controller;  //保存方法对应的实例
 
-    private Method method;
+    private Method method; //保存映射的方法
 
-    private Pattern pattern;
+    private Pattern pattern;  //URL的正则匹配
 
     public GPHandlerMapping(Object controller, Method method, Pattern pattern) {
         this.controller = controller;
@@ -45,10 +45,5 @@ public class GPHandlerMapping {
 
     public void setPattern(Pattern pattern) {
         this.pattern = pattern;
-    }
-
-    @Override
-    public String toString() {
-        return new Gson().toJson(this);
     }
 }

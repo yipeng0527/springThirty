@@ -137,10 +137,16 @@ public class GPDispatcherServlet extends HttpServlet {
     }
 
     private void initViewResolvers(GPApplicationContext context) {
+        //拿到模板的存放目录
         String templateRoot = context.getConfig().getProperty("templateRoot");
         String templateRootPath = this.getClass().getClassLoader().getResource(templateRoot).getFile();
+
         File templateRootDir = new File(templateRootPath);
-        for (File template : templateRootDir.listFiles()) {
+        String[] templates = templateRootDir.list();
+        for (int i = 0; i < templates.length; i ++) {
+            //这里主要是为了兼容多模板，所有模仿Spring用List保存
+            //在我写的代码中简化了，其实只有需要一个模板就可以搞定
+            //只是为了仿真，所有还是搞了个List
             this.viewResolvers.add(new GPViewResolver(templateRoot));
         }
     }
@@ -198,6 +204,7 @@ public class GPDispatcherServlet extends HttpServlet {
             GPView view = vr.resolveViewName(mv.getViewName(), null);
             if (null != view) {
                 view.render(mv.getModel(), request, response);
+                return;
             }
         }
     }

@@ -21,7 +21,7 @@ public class PageAction {
     @GPAutowired
     private IQueryService queryService;
 
-    @GPRequestMapping("/first.html")
+    @GPRequestMapping("/layouts/first.html")
     public GPModelAndView query(@GPRequestParam("teacher") String teacher) {
         String result = queryService.query(teacher);
         Map<String, Object> model = Maps.newHashMap();

@@ -1,5 +1,6 @@
 package com.yp.spring.demo.action;
 
+import com.google.common.collect.Maps;
 import com.yp.spring.demo.service.IModifyService;
 import com.yp.spring.demo.service.IQueryService;
 import com.yp.spring.framework.annotation.GPAutowired;
@@ -9,6 +10,8 @@ import com.yp.spring.framework.annotation.GPRequestParam;
 import com.yp.spring.framework.webmvc.GPModelAndView;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,9 +40,16 @@ public class MyAction {
 
     @GPRequestMapping("/add*.json")
     public GPModelAndView add(HttpServletRequest request, HttpServletResponse response,
-                              @GPRequestParam("name") String name, @GPRequestParam("addr") String addr) {
-        String result = modifyService.add(name, addr);
-        return out(response, result);
+                              @GPRequestParam("name") String name, @GPRequestParam("addr") String addr) throws Exception {
+        try{
+            String result = modifyService.add(name, addr);
+            return out(response, result);
+        }catch (Exception e){
+            Map<String, Object> model = Maps.newHashMap();
+            model.put("detail",e.getMessage());
+            model.put("stackTrace", Arrays.toString(e.getStackTrace()).replaceAll("\\[|\\]", "").replaceAll("\\s", "\r\n"));
+            return new GPModelAndView("500", model);
+        }
     }
 
     @GPRequestMapping("/remove.json")
