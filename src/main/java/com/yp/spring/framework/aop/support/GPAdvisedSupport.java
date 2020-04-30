@@ -74,11 +74,12 @@ public class GPAdvisedSupport {
                 .replaceAll("\\(", "\\\\(")
                 .replaceAll("\\)", "\\\\)");
         String pointCutForClass = pointCut.substring(0, pointCut.lastIndexOf("\\(") - 4);
-        pointCutClassPattern = Pattern.compile("class" + pointCutForClass
+        pointCutClassPattern = Pattern.compile("class " + pointCutForClass
                 .substring(pointCutForClass.lastIndexOf(" ") + 1));
-        methodCache = new HashMap<>();
-        Pattern pattern = Pattern.compile(pointCut);
         try {
+            methodCache = new HashMap<>();
+            Pattern pattern = Pattern.compile(pointCut);
+
             Class aspectClass = Class.forName(config.getAspectClass());
             Map<String, Method> aspectMethods = new HashMap<>();
             for (Method m : aspectClass.getMethods()) {
