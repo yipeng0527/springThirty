@@ -75,11 +75,8 @@ public class GPAdvisedSupport {
                 pointCutForClassRegex.lastIndexOf(" ") + 1));
 
         try {
-
             methodCache = new HashMap<Method, List<Object>>();
             Pattern pattern = Pattern.compile(pointCut);
-
-
 
             Class aspectClass = Class.forName(this.config.getAspectClass());
             Map<String,Method> aspectMethods = new HashMap<String,Method>();
@@ -120,13 +117,10 @@ public class GPAdvisedSupport {
                     }
                     methodCache.put(m,advices);
                 }
-
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
 
     public void setTarget(Object target) {
